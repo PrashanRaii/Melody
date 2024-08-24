@@ -11,7 +11,7 @@ using namespace std;
 using namespace sf;
 
 
-void showPopup(RenderWindow& window, const string& message, Vector2f popupSize = Vector2f(400, 60))
+void showPopup(RenderWindow& window, string message, Vector2f popupSize = Vector2f(400, 60), string color = "Default")
 {
 
     Texture texture;
@@ -19,10 +19,33 @@ void showPopup(RenderWindow& window, const string& message, Vector2f popupSize =
     texture.update(window);
     Sprite background(texture);
 
+
     RectangleShape popupBox(popupSize);
-    popupBox.setFillColor(Color(0xDC3545FF));
     popupBox.setPosition(window.getSize().x / 2 - popupSize.x / 2, -popupSize.y);
 
+
+
+    if (color == "Success")
+    {
+        Color successColor(0x28A745FF);
+        popupBox.setFillColor(successColor);
+    }
+    else if (color == "Warning")
+    {
+        Color warningColor(0xFFC107FF);
+        popupBox.setFillColor(warningColor);
+    }
+    else if (color == "Error")
+    {
+        Color errorColor(0xDC3545FF);
+        popupBox.setFillColor(errorColor);
+    }
+    else
+    {
+        Color defaultColor(0x007BFF);
+        popupBox.setFillColor(defaultColor);
+    }
+    
 
     Font font;
 
@@ -54,7 +77,7 @@ void showPopup(RenderWindow& window, const string& message, Vector2f popupSize =
         window.display();
     }
 
-    sleep(seconds(2));
+    sleep(seconds(1));
 
     while (popupBox.getPosition().y > -popupSize.y)
     {

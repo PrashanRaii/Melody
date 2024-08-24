@@ -3,8 +3,10 @@
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
+#include "error.hpp"
 
 using namespace sf;
+using namespace std;
 
 class Slider
 {
@@ -14,12 +16,15 @@ class Slider
         CircleShape thumb;
         Text currentDuration;
         Text totalDuration;
+        Font font;
         float minValue, maxValue;
         float currentValue;
     public:
         Slider(Vector2f position, Vector2f size, float minValue = 0, float maxValue = 100): minValue(minValue), maxValue(maxValue), currentValue(minValue)
         {
             Color color(0x071952FF);    
+            Color color2(0xFD3A69FF);
+
             track.setSize(size);
             track.setFillColor(Color(0, 0, 0, 100));
             track.setPosition(position);
@@ -34,22 +39,38 @@ class Slider
             thumb.setOutlineColor(color);
             thumb.setPosition(position.x, (track.getPosition().y - (thumb.getRadius() / 2)));
             
-            currentDuration.setPosition(position.x, position.y - 20);
-            currentDuration.setFillColor(color);
-            totalDuration.setPosition(position.x + size.x - 50, position.y - 20);
-            totalDuration.setFillColor(color);
+            if (!font.loadFromFile("Poppins-Medium.ttf"))
+            {
+                error("Error Loading Font File.");
+                return;
+            }
+
+            currentDuration.setFont(font);
+            currentDuration.setCharacterSize(20);
+            currentDuration.setFillColor(color2);
+            currentDuration.setPosition(position.x, position.y - 30);
+
+            totalDuration.setFont(font);
+            totalDuration.setCharacterSize(20);
+            totalDuration.setFillColor(color2);
+            totalDuration.setPosition(position.x + size.x - 42, position.y - 30);;
         }
         void setTotalDuration(int seconds)
         {
             int minutes = seconds / 60;
             int remainingSeconds = seconds % 60;
-            totalDuration.setString(to_string(minutes) + ":" + (remainingSeconds < 10 ? "0" : "") + to_string(remainingSeconds));
+            string message = to_string(minutes) + ":" + (remainingSeconds < 10 ? "0" : "") + to_string(remainingSeconds);
+            totalDuration.Bold;
+            totalDuration.setString(message);
         }
         void setCurrentDuration(int seconds)
         {
             int minutes = seconds / 60;
             int remainingSeconds = seconds % 60;
-            currentDuration.setString(to_string(minutes) + ":" + (remainingSeconds < 10 ? "0" : "") + to_string(remainingSeconds));
+            string message = to_string(minutes) + ":" + (remainingSeconds < 10 ? "0" : "") + to_string(remainingSeconds);
+            currentDuration.Bold;
+            currentDuration.setString(message);
+        
         }
         void setThumbPosition(float value)
         {

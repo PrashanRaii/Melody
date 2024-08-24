@@ -80,7 +80,6 @@ int login()
 
     Sprite submitButton(submitTexture);
     submitButton.setPosition(300, 360);
-
     string username = "";
     string password = "";
     bool typingUsername = true;
@@ -156,8 +155,8 @@ int login()
                 cout << "Password: " << password << endl;
                 cout << "Logged in." << endl;
                 string message = "Welcome Back, " + username;
-                showPopup(window, message);
                 window.close();
+                showPopup(window, message, Vector2f(400, 60), "Success");
                 player();
             }
         }

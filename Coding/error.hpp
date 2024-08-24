@@ -16,9 +16,9 @@ void error(string message)
 {
     RenderWindow window(VideoMode(700, 500), "Error Encountered");
     Image icon;
-    if (!icon.loadFromFile("C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/icon.png"))
+    if (!icon.loadFromFile("C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/iconfadkl.png"))
     {
-        showPopup(window, "Error Loading Icon File.");   
+        showPopup(window, "Error Loading Icon File.", Vector2f(400, 60), "Error");   
         cout << "Error Loading Icon File." << endl << "Proceeding Without Loading." << endl;
     }
     else {
@@ -28,7 +28,7 @@ void error(string message)
     Texture background;
     if (!background.loadFromFile("C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/Melody-Error.png"))
     {
-        showPopup(window, "Error Loading Image File");
+        showPopup(window, "Error Loading Image File", Vector2f(400, 60), "Error");
         cout << "Error Loading Error Image File." << endl << "Proceeding Without Loading." << endl;
     }
 
@@ -36,7 +36,7 @@ void error(string message)
 
     if (!font.loadFromFile("Poppins-Medium.ttf"))
     {
-        showPopup(window, "Error Loading Font File.");
+        showPopup(window, "Error Loading Font File.",  Vector2f(400, 60), "Error");
         cout << "Error Loading Font File." << endl;
     }
 
@@ -45,7 +45,7 @@ void error(string message)
     Texture backTexture;
     if (!backTexture.loadFromFile("C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/exit.png"))
     {
-        showPopup(window, "Error Loading Icons.");
+        showPopup(window, "Error Loading Icons.", Vector2f(400, 60), "Error");
         cout << "Error Loading Icons." << endl;
         return;
     }
