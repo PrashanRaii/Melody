@@ -27,12 +27,12 @@ void showPopup(RenderWindow& window, string message, Vector2f popupSize = Vector
 
     if (color == "Success")
     {
-        Color successColor(0x28A745FF);
+        Color successColor(0x66CDAAFF);
         popupBox.setFillColor(successColor);
     }
     else if (color == "Warning")
     {
-        Color warningColor(0xFFC107FF);
+        Color warningColor(0xFFD700FF);
         popupBox.setFillColor(warningColor);
     }
     else if (color == "Error")
@@ -42,7 +42,7 @@ void showPopup(RenderWindow& window, string message, Vector2f popupSize = Vector
     }
     else
     {
-        Color defaultColor(0x007BFF);
+        Color defaultColor(0x7CB9E8FF);
         popupBox.setFillColor(defaultColor);
     }
     

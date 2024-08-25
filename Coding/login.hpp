@@ -13,7 +13,7 @@ int player();
 
 int login()
 {
-    RenderWindow window(sf::VideoMode(700, 500), "Login Form");
+    RenderWindow window(sf::VideoMode(700, 600), "Login Form");
 
     Font font;
     if (!font.loadFromFile("Poppins-Medium.ttf"))

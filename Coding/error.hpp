@@ -14,7 +14,7 @@ using namespace sf;
 
 void error(string message)
 {
-    RenderWindow window(VideoMode(700, 500), "Error Encountered");
+    RenderWindow window(VideoMode(700, 600), "Error Encountered");
     Image icon;
     if (!icon.loadFromFile("C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/iconfadkl.png"))
     {
@@ -51,10 +51,7 @@ void error(string message)
     }
 
     Sprite backSprite(backTexture);
-    Vector2f iconSize(50.f, 50.f);
-    backSprite.setScale(iconSize.x / backTexture.getSize().x, iconSize.y / backTexture.getSize().y);
-
-    backSprite.setPosition(320, 500);
+    backSprite.setPosition(window.getSize().x / 2 - backSprite.getGlobalBounds().width / 2, 500);
 
     string t_message = message + "\nPlease try restarting the program.";
 

@@ -33,9 +33,11 @@ class Slider
             overlayTrack.setSize(Vector2f(0, size.y));
             overlayTrack.setFillColor(color);
 
+
+
             thumb.setRadius(size.y - 2);
             thumb.setFillColor(Color(255, 255, 255));
-            thumb.setOutlineThickness(3);
+            thumb.setOutlineThickness(2);
             thumb.setOutlineColor(color);
             thumb.setPosition(position.x, (track.getPosition().y - (thumb.getRadius() / 2)));
             
@@ -46,14 +48,16 @@ class Slider
             }
 
             currentDuration.setFont(font);
-            currentDuration.setCharacterSize(20);
+            currentDuration.setCharacterSize(18);
             currentDuration.setFillColor(color2);
             currentDuration.setPosition(position.x, position.y - 30);
+            currentDuration.setStyle(Text::Bold);
 
             totalDuration.setFont(font);
-            totalDuration.setCharacterSize(20);
+            totalDuration.setCharacterSize(18);
             totalDuration.setFillColor(color2);
             totalDuration.setPosition(position.x + size.x - 42, position.y - 30);;
+            totalDuration.setStyle(Text::Bold);
         }
         void setTotalDuration(int seconds)
         {
