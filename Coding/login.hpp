@@ -11,6 +11,7 @@ using namespace sf;
 
 int player(string);
 int registerUser();
+int home(string);
 
 int login()
 {
@@ -175,7 +176,7 @@ int login()
                 {              
                     string message = "Welcome Back, " + username;
                     showPopup(window, message);
-                    player(username);
+                    home(username);
                     window.close();
                 }
             }
@@ -185,7 +186,7 @@ int login()
                 string message = "Welcome Back, " + username;
                 window.close();
                 showPopup(window, message, Vector2f(400, 60), "Success");
-                player(username);
+                home(username);
             }
         }
 

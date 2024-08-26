@@ -6,10 +6,9 @@
 int main()
 {
     bool isLoggedIn = true;
-    
     if (isLoggedIn  == true)    
     {
-        return home();
+        return player();
         return 0;
     }
     else 

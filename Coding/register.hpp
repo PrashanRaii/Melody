@@ -14,7 +14,7 @@ int home(string);
 
 int registerUser()
 {
-    RenderWindow window(sf::VideoMode(700, 600), "Register Form");
+    RenderWindow window(VideoMode(700, 600), "Register Form");
 
     Font font;
     if (!font.loadFromFile("Poppins-Medium.ttf"))
