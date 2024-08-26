@@ -16,7 +16,7 @@ enum class PlayMode {
     Shuffle
 };
 
-int player()
+int player(string username = "Listener")
 {
     
     ContextSettings settings;
@@ -29,7 +29,7 @@ int player()
     Color color3(0x6F6F6FFF);
 
     Music music;
-    if (!music.openFromFile("C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/Bulleya.wav"))
+    if (!music.openFromFile("C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/Co2.wav"))
     {
         error("Error Loading Music File.");
         return 1;
@@ -47,7 +47,7 @@ int player()
         error("Error Loading Background File.");
         return 1;
     }
-    if (!musicSprite.loadFromFile("C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/player.jpg"))
+    if (!musicSprite.loadFromFile("C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/co2.jpg"))
     {
         musicSprite.loadFromFile("C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/error-musician.jpg");
         showPopup(window, "Error Loading Music Image", Vector2f(400, 60), "Error");
@@ -79,17 +79,19 @@ int player()
         return 1;
     }
     
-    Text text("Hey, Abhishek", font, 19);
+    string welcomeText = "Hey, " + username;
+
+    Text text(welcomeText, font, 19);
     text.setStyle(Text::Bold);
     text.setFillColor(color);
     text.setPosition(90, 30);
 
-    Text musicName("Bulleya - Ae Dil Hai Mushkil", font, 30);
+    Text musicName("CO2", font, 30);
     musicName.setStyle(Text::Bold);
     musicName.setFillColor(color);
     musicName.setPosition(window.getSize().x / 2 - musicName.getGlobalBounds().width / 2, 330);
     
-    Text musician("Amit Mishra, Shilpa Rao", font, 20);
+    Text musician("Prateek Kuhad", font, 20);
     musician.setStyle(Text::Regular);
     musician.setFillColor(color3);
     musician.setPosition(window.getSize().x / 2 - musician.getGlobalBounds().width / 2, 380);

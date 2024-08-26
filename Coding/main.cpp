@@ -1,18 +1,20 @@
 #include "error.hpp"
 #include "player.hpp"
 #include "login.hpp"
+#include "register.hpp"
+#include "home.cpp"
 int main()
 {
-    bool isLoggedIn = false;
+    bool isLoggedIn = true;
     
     if (isLoggedIn  == true)    
     {
-        return player();
+        return home();
         return 0;
     }
     else 
     {
-        return login();
+        return registerUser();
         return 0;
     }
     return 0;
