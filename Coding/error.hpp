@@ -16,7 +16,7 @@ void error(string message)
 {
     RenderWindow window(VideoMode(700, 600), "Error Encountered");
     Image icon;
-    if (!icon.loadFromFile("C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/iconfadkl.png"))
+    if (!icon.loadFromFile("C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/icon.png"))
     {
         showPopup(window, "Error Loading Icon File.", Vector2f(400, 60), "Error");   
         cout << "Error Loading Icon File." << endl << "Proceeding Without Loading." << endl;

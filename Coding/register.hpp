@@ -4,6 +4,7 @@
 #include <string>
 #include "popup.hpp"
 #include "error.hpp"
+#include "User.hpp"
 
 using namespace std;
 using namespace sf;
@@ -14,6 +15,7 @@ int home(string);
 
 int registerUser()
 {
+    User user;
     RenderWindow window(VideoMode(700, 600), "Register Form");
 
     Font font;
@@ -197,25 +199,38 @@ int registerUser()
             if (event.type == Event::MouseButtonPressed && password != "" && username != "")
             {
                 if (submitButton.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y))
-                {              
-                    string message = "Welcome Back, " + username;
-                    showPopup(window, message);
-                    home(username);
-                    window.close();
+                {
+                    if (user.UserRegister(window, username, password, userType))
+                    {
+                        string message = "Welcome to Melody Tunes, " + username;
+                        showPopup(window, message, Vector2f(500, 60), "Success");
+                        window.close();
+                        return home(username);
+                    }
+                    else
+                    {
+                        window.close();
+                        registerUser();
+                    }
                 }
             }
 
             if (event.type == Event::KeyPressed && event.key.code == Keyboard::Enter && password != "" && username != "")
             {
-                window.close();
-                string message = "Welcome Back, " + username;
-                showPopup(window, message, Vector2f(400, 60), "Success");
-                home(username);
+                if (user.UserRegister(window, username, password, userType))
+                {
+                    string message = "Welcome to Melody Tunes, " + username;
+                    showPopup(window, message, Vector2f(500, 60), "Success");
+                    window.close();
+                    return home(username);
+                }
+                else
+                {
+                    window.close();
+                    registerUser();
+                }
             }
         }
-
-
-
         usernameInput.setString(username);
         passwordInput.setString(string(password.length(), '*'));
 

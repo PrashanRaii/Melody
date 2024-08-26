@@ -4,6 +4,7 @@
 #include <string>
 #include "popup.hpp"
 #include "error.hpp"
+#include "User.hpp"
 
 using namespace std;
 using namespace sf;
@@ -15,6 +16,7 @@ int home(string);
 
 int login()
 {
+    User user;
     RenderWindow window(sf::VideoMode(700, 600), "Login Form");
 
     Font font;
@@ -174,19 +176,35 @@ int login()
             {
                 if (submitButton.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y))
                 {              
-                    string message = "Welcome Back, " + username;
-                    showPopup(window, message);
-                    home(username);
-                    window.close();
+                    if (user.UserLogin(window, username, password))
+                    {
+                        string message = "Welcome Back, " + username;
+                        showPopup(window, message, Vector2f(500, 60), "Success");
+                        window.close();
+                        return home(username);
+                    }
+                    else
+                    {
+                        window.close();
+                        login();
+                    }
                 }
             }
 
             if (event.type == Event::KeyPressed && event.key.code == Keyboard::Enter && password != "" && username != "")
             {
-                string message = "Welcome Back, " + username;
-                window.close();
-                showPopup(window, message, Vector2f(400, 60), "Success");
-                home(username);
+                if (user.UserLogin(window, username, password))
+                {
+                    string message = "Login Successful, Welcome Back, " + username;
+                    showPopup(window, message, Vector2f(500, 60), "Success");
+                    window.close();
+                    return home(username);
+                }
+                else
+                {
+                    window.close();
+                    login();
+                }
             }
         }
 

@@ -3,17 +3,19 @@
 #include "login.hpp"
 #include "register.hpp"
 #include "home.cpp"
+#include "User.hpp"
+
 int main()
 {
-    bool isLoggedIn = true;
-    if (isLoggedIn  == true)    
+    bool isLoggedIn = false;
+    if (isLoggedIn  == false)    
     {
-        return player();
+        return registerUser();
         return 0;
     }
     else 
     {
-        return registerUser();
+        return home();
         return 0;
     }
     return 0;

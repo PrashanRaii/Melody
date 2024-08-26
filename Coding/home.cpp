@@ -97,6 +97,7 @@ int home(string username = "Listener")
 
         window.draw(s);
         window.draw(home);
+        window.draw(text);
         window.draw(favourites);
         window.draw(upload);
         window.draw(logout);
