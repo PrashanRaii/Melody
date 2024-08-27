@@ -24,14 +24,15 @@ int registerUser()
         error("Error Loading Font File.");
         return 1;
     }
-    Texture background, listenerTexture, musicianTexture;
-    if (!background.loadFromFile("C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/register.png") || !listenerTexture.loadFromFile("C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/Listener.png") || !musicianTexture.loadFromFile("C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/Musician.png"))
+    Texture background, listenerTexture, musicianTexture, background2;
+    if (!background.loadFromFile("C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/register.png") || !listenerTexture.loadFromFile("C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/Listener.png") || !musicianTexture.loadFromFile("C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/Musician.png") || !background2.loadFromFile("C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/register-2.png"))
     {
         error("Error Loading Image File.");
         return 1;
     }
 
     Sprite s(background);
+    Sprite s2(background2);
     Sprite listenerSprite(listenerTexture);
     Sprite musicianSprite(musicianTexture);
 
@@ -249,7 +250,7 @@ int registerUser()
         }
         else 
         {
-            window.draw(s);
+            window.draw(s2);
             window.draw(text);
             window.draw(text3);
             window.draw(text4);
