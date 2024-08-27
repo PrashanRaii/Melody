@@ -4,10 +4,11 @@
 #include "register.hpp"
 #include "home.cpp"
 #include "User.hpp"
+#include "listener.hpp"
 
 int main()
 {
-    bool isLoggedIn = false;
+    bool isLoggedIn = true;
     if (isLoggedIn  == false)    
     {
         return registerUser();

@@ -4,27 +4,25 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <limits> // for numeric_limits
-#include <cctype> // for isalnum
+#include <limits> // for std::numeric_limits
+#include <cctype> // for std::isalnum
 #include <cstdlib> 
-using namespace std;
-
-int main();
 
 class User
 {
 protected:
-    string username, password, role;
+    std::string username, password, role;
 
 public:
-    User(string usrnm = "", string pass = "", string role = "") : username(usrnm), password(pass), role(role) {}
+    User(const std::string& usrnm = "", const std::string& pass = "", const std::string& role = "") 
+        : username(usrnm), password(pass), role(role) {}
 
     // Check if the username is valid (alphanumeric)
-    bool isValidUsername(const string &username)
+    bool isValidUsername(const std::string& username)
     {
-        for (size_t i = 0; i < username.length(); ++i)
+        for (std::size_t i = 0; i < username.length(); ++i)
         {
-            if (!isalnum(username[i])) // Check if the character is not alphanumeric
+            if (!std::isalnum(username[i])) // Check if the character is not alphanumeric
             {
                 return false;
             }
@@ -33,17 +31,17 @@ public:
     }
 
     // Encrypt the password
-    string encryptPassword(const string &password, int shift)
+    std::string encryptPassword(const std::string& password, int shift)
     {
-        string encryptedPassword = password;
-        for (size_t i = 0; i < password.length(); ++i)
+        std::string encryptedPassword = password;
+        for (std::size_t i = 0; i < password.length(); ++i)
         {
-            if (isalpha(password[i]))
+            if (std::isalpha(password[i]))
             {
-                char base = islower(password[i]) ? 'a' : 'A';
+                char base = std::islower(password[i]) ? 'a' : 'A';
                 encryptedPassword[i] = (password[i] - base + shift) % 26 + base;
             }
-            else if (isdigit(password[i]))
+            else if (std::isdigit(password[i]))
             {
                 encryptedPassword[i] = (password[i] - '0' + shift) % 10 + '0';
             }
@@ -52,20 +50,20 @@ public:
     }
 
     // Register a new user
-    bool UserRegister(RenderWindow &window, string &username, string &password, string &role)
+    bool UserRegister(sf::RenderWindow &window, std::string &username, std::string &password, std::string &role)
     {
         bool validUsername = false;
         do
         {
             if (isValidUsername(username))
             {
-                ifstream in("users.txt");
-                string fileUsername;
+                std::ifstream in("users.txt");
+                std::string fileUsername;
                 bool usernameExists = false;
 
                 while (in >> fileUsername)
                 {
-                    in.ignore(numeric_limits<streamsize>::max(), '\n');
+                    in.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                     if (fileUsername == username)
                     {
                         usernameExists = true;
@@ -76,7 +74,7 @@ public:
 
                 if (usernameExists)
                 {
-                    showPopup(window, "Username already exists!", Vector2f(500, 60), "Error");
+                    showPopup(window, "Username already exists!", sf::Vector2f(500, 60), "Error");
                     return false;
                 }
                 else
@@ -86,13 +84,12 @@ public:
             }
             else
             {
-                showPopup(window, "Invalid Username! Only alphabets and numbers are allowed.", Vector2f(500, 60), "Error");
+                showPopup(window, "Invalid Username! Only alphabets and numbers are allowed.", sf::Vector2f(500, 60), "Error");
             }
         } while (!validUsername);
 
         int roleChoice;
         bool validRole = false;
-
 
         while (!validRole)
         {
@@ -102,30 +99,30 @@ public:
             }
             else
             {
-                showPopup(window, "Invalid Role!", Vector2f(500, 60), "Error");
+                showPopup(window, "Invalid Role!", sf::Vector2f(500, 60), "Error");
                 return false;
             }
         }
 
-        string encryptedPassword = encryptPassword(password, 7);
+        std::string encryptedPassword = encryptPassword(password, 7);
 
-        ofstream out("users.txt", ios::app); // Only ios::app is needed for appending
+        std::ofstream out("users.txt", std::ios::app); // Only std::ios::app is needed for appending
         if (!out)
         {
             error("Error opening file for writing.");
             return false;
         }
-        out << username << " " << encryptedPassword << " " << role << endl;
+        out << username << " " << encryptedPassword << " " << role << std::endl;
         out.close();
 
-        cout << "Registration successful! You are a " << role << "." << endl;
+        std::cout << "Registration successful! You are a " << role << "." << std::endl;
         return true;
     }
 
     // Login an existing user
-    bool UserLogin(RenderWindow &window, string &username, string &password)
+    bool UserLogin(sf::RenderWindow &window, std::string &username, std::string &password)
     {
-        ifstream in("users.txt");
+        std::ifstream in("users.txt");
         if (!in)
         {
             error("Error opening file for reading.");
@@ -140,14 +137,14 @@ public:
             }
             else
             {
-                showPopup(window, "Invalid Username!", Vector2f(500, 60), "Error");
+                showPopup(window, "Invalid Username!", sf::Vector2f(500, 60), "Error");
                 return false;
             }
         } while (!validUsername);
 
-        string encryptedPassword = encryptPassword(password, 7);
+        std::string encryptedPassword = encryptPassword(password, 7);
 
-        string fileUsername, filePassword, fileRole, role;
+        std::string fileUsername, filePassword, fileRole, role;
         bool loginSuccess = false;
 
         while (in >> fileUsername >> filePassword >> fileRole)
@@ -164,22 +161,21 @@ public:
 
         if (loginSuccess)
         {
-            cout << "Login successful! Welcome " << username << "." << endl;
+            std::cout << "Login successful! Welcome " << username << "." << std::endl;
             return true;
         }
         else
         {
-            showPopup(window, "Invalid username or password.", Vector2f(500, 60), "Error");
+            showPopup(window, "Invalid username or password.", sf::Vector2f(500, 60), "Error");
             return false;
         }
         return false;
     }
 
     // Getter methods
-    string getUsername() const { return username; }
-    string getPassword() const { return password; }
-    string getRole() const { return role; }
+    std::string getUsername() const { return username; }
+    std::string getPassword() const { return password; }
+    std::string getRole() const { return role; }
 };
-
 
 #endif

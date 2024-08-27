@@ -16,7 +16,7 @@ enum class PlayMode {
     Shuffle
 };
 
-int player(string username = "Listener")
+int player(string username, const string& songFilePath, const string& songImagePath, const string& songName, const string& musicianName)
 {
     
     ContextSettings settings;
@@ -29,7 +29,7 @@ int player(string username = "Listener")
     Color color3(0x6F6F6FFF);
 
     Music music;
-    if (!music.openFromFile("C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/Co2.wav"))
+    if (!music.openFromFile(songFilePath))
     {
         error("Error Loading Music File.");
         return 1;
@@ -47,7 +47,7 @@ int player(string username = "Listener")
         error("Error Loading Background File.");
         return 1;
     }
-    if (!musicSprite.loadFromFile("C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/co2.jpg"))
+    if (!musicSprite.loadFromFile(songImagePath))
     {
         musicSprite.loadFromFile("C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/error-musician.jpg");
         showPopup(window, "Error Loading Music Image", Vector2f(400, 60), "Error");
@@ -86,12 +86,12 @@ int player(string username = "Listener")
     text.setFillColor(color);
     text.setPosition(90, 30);
 
-    Text musicName("CO2", font, 30);
+    Text musicName(songName, font, 30);
     musicName.setStyle(Text::Bold);
     musicName.setFillColor(color);
     musicName.setPosition(window.getSize().x / 2 - musicName.getGlobalBounds().width / 2, 330);
     
-    Text musician("Prateek Kuhad", font, 20);
+    Text musician(musicianName, font, 20);
     musician.setStyle(Text::Regular);
     musician.setFillColor(color3);
     musician.setPosition(window.getSize().x / 2 - musician.getGlobalBounds().width / 2, 380);
