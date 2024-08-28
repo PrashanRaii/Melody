@@ -1,19 +1,6 @@
 Collection
-klfakld|fdas|C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/Co2.wav|C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/co2.jpg
-klfakld|fdas|C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/Co2.wav|C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/co2.jpg
-klfakld|fdas|C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/Co2.wav|C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/co2.jpg
-klfakld|fdas|C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/Co2.wav|C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/co2.jpg
-klfakld|fdas|C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/Co2.wav|C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/co2.jpg
-klfakld|fdas|C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/Co2.wav|C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/co2.jpg
-klfakld|fdas|C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/Co2.wav|C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/co2.jpg
-klfakld|fdas|C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/Co2.wav|C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/co2.jpg
-klfakld|fdas|C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/Co2.wav|C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/co2.jpg
-klfakld|fdas|C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/Co2.wav|C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/co2.jpg
-klfakld|fdas|C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/Co2.wav|C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/co2.jpg
-klfakld|fdas|C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/Co2.wav|C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/co2.jpg
-klfakld|fdas|C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/Co2.wav|C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/co2.jpg
-klfakld|fdas|C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/Co2.wav|C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/co2.jpg
-klfakld|fdas|C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/Co2.wav|C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/co2.jpg
-klfakld|fdas|C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/Co2.wav|C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/co2.jpg
+CO2|Prateek Kuhad|C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/Co2.wav|C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/co2.jpg
+Bulleya|Papon|C:\Users\Dell\Desktop\Learning\C++ Project\Coding\static\Bulleya.wav|C:\Users\Dell\Desktop\Learning\C++ Project\Coding\static\player.jpg
+fjadslk|fdjasl|C:\Users\Dell\Desktop\Learning\C++ Project\Coding\static\Bulleya.wav|C:\Users\Dell\Desktop\Learning\C++ Project\Coding\static\co2.jpg
 Favorites
 klfakld|fdas|C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/Co2.wav|C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/co2.jpg

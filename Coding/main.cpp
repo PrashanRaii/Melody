@@ -2,13 +2,15 @@
 #include "player.hpp"
 #include "login.hpp"
 #include "register.hpp"
-#include "home.cpp"
+#include "home.hpp"
+#include "homeAdmin.hpp"
 #include "User.hpp"
 #include "listener.hpp"
+#include "tinyfiledialogs.h"
 
 int main()
 {
-    bool isLoggedIn = false;
+    bool isLoggedIn = true;
     if (isLoggedIn  == false)    
     {
         return registerUser();

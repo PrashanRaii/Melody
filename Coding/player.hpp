@@ -1,3 +1,6 @@
+#ifndef PLAYER_HPP
+#define PLAYER_HPP
+
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
@@ -6,7 +9,8 @@
 #include "error.hpp"
 #include "popup.hpp"
 #include "slider.hpp"
-#include "listener.hpp"
+#include "musician.hpp"
+#include "home.hpp"
 
 using namespace std;
 using namespace sf;
@@ -16,6 +20,7 @@ enum class PlayMode {
     RepeatOff,
     Shuffle
 };
+int home(string username);
 
 int player(string username, const string& songFilePath, const string& songImagePath, const string& songName, const string& musicianName)
 {
@@ -54,8 +59,12 @@ int player(string username, const string& songFilePath, const string& songImageP
         showPopup(window, "Error Loading Music Image", Vector2f(400, 60), "Error");
     }
     musicSprite.setSmooth(true);
-    Texture playTexture, pauseTexture, playBackTexture, playForwardTexture, playNextTexture, playPrevTexture, repeatTexture, nonRepeatTexture, shuffleTexture, heartFillTexture, heartStrokeTexture;
-    if (!playTexture.loadFromFile("C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/play.png") || !pauseTexture.loadFromFile("C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/pause.png") || !playBackTexture.loadFromFile("C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/arrow-left.png") || !playForwardTexture.loadFromFile("C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/arrow-right.png") || !playPrevTexture.loadFromFile("C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/previous.png") || !playNextTexture.loadFromFile("C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/next.png") || !repeatTexture.loadFromFile("C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/Repeat.png") || !nonRepeatTexture.loadFromFile("C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/Non-Repeat.png") || !shuffleTexture.loadFromFile("C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/Shuffle.png") || !heartFillTexture.loadFromFile("C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/heart-fill.png") || !heartStrokeTexture.loadFromFile("C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/heart-stroke.png"))
+    Texture playTexture, pauseTexture, playBackTexture, playForwardTexture, playNextTexture, playPrevTexture, repeatTexture, nonRepeatTexture, shuffleTexture, heartFillTexture, heartStrokeTexture, backTexture;
+    if (!playTexture.loadFromFile("C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/play.png") || !pauseTexture.loadFromFile("C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/pause.png") || !playBackTexture.loadFromFile("C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/arrow-left.png") || !playForwardTexture.loadFromFile("C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/arrow-right.png") || !playPrevTexture.loadFromFile("C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/previous.png") || !playNextTexture.loadFromFile("C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/next.png") || !repeatTexture.loadFromFile("C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/Repeat.png") || !nonRepeatTexture.loadFromFile("C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/Non-Repeat.png") || !shuffleTexture.loadFromFile("C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/Shuffle.png") || !heartFillTexture.loadFromFile("C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/heart-fill.png") || !heartStrokeTexture.loadFromFile("C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/heart-stroke.png") || !backTexture.loadFromFile("C:/Users/Dell/Desktop/Learning/C++ Project/Coding/static/Back.png"))
+    {
+        error("Error Loading Icons.");
+        return 1;
+    }
     {
         error("Error Loading Icons.");
         return 1;
@@ -66,6 +75,7 @@ int player(string username, const string& songFilePath, const string& songImageP
 
 
     Sprite backgroundSprite(background);
+    Sprite backSprite(backTexture);
     Vector2u textureSize = background.getSize(); 
     Vector2u windowSize = window.getSize();
     backgroundSprite.setScale(float(windowSize.x) / textureSize.x, float(windowSize.y) / textureSize.y);
@@ -98,6 +108,8 @@ int player(string username, const string& songFilePath, const string& songImageP
     musician.setStyle(Text::Regular);
     musician.setFillColor(color3);
     musician.setPosition(window.getSize().x / 2 - musician.getGlobalBounds().width / 2, 380);
+
+    backSprite.setPosition(20, 120);
 
     const int numBars = 5;
     RectangleShape bars[numBars];
@@ -300,6 +312,13 @@ int player(string username, const string& songFilePath, const string& songImageP
                         currentMode = PlayMode::RepeatOn;
                     }
                 }
+                if (backSprite.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y))
+                {
+                    music.stop();
+                    window.close();
+                    home(username);
+                    return 0;
+                }
                 if (heartFillSprite.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y)){
                     if (isFavourite == true)
                     {
@@ -409,3 +428,4 @@ int player(string username, const string& songFilePath, const string& songImageP
 
     return 0;
 }
+#endif

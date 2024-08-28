@@ -1,0 +1,5 @@
+Title:CO2
+Artist:Abhik
+FilePath:C:\Users\Dell\Desktop\Learning\C++ Project\Coding\static\Co2.wav
+ImagePath:C:\Users\Dell\Desktop\Learning\C++ Project\Coding\static\co2.jpg
+-----

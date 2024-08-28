@@ -120,7 +120,7 @@ public:
     }
 
     // Login an existing user
-    bool UserLogin(sf::RenderWindow &window, std::string &username, std::string &password)
+    bool UserLogin(sf::RenderWindow &window, std::string &username, std::string &password, std::string &role)
     {
         std::ifstream in("users.txt");
         if (!in)
@@ -144,14 +144,13 @@ public:
 
         std::string encryptedPassword = encryptPassword(password, 7);
 
-        std::string fileUsername, filePassword, fileRole, role;
+        std::string fileUsername, filePassword, fileRole;
         bool loginSuccess = false;
 
         while (in >> fileUsername >> filePassword >> fileRole)
         {
-            if (fileUsername == username && filePassword == encryptedPassword)
+            if (fileUsername == username && filePassword == encryptedPassword && fileRole == role)
             {
-                role = fileRole;
                 loginSuccess = true;
                 break;
             }
