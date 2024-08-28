@@ -6,6 +6,9 @@
 #include <string>
 #include <algorithm>
 #include <fstream>
+#include "popup.hpp"
+#include "User.hpp"
+
 using namespace std;
 
 class Song {
@@ -52,7 +55,7 @@ public:
     }
 };
 
-class listener {
+class listener: public User {
 private:
     string name;
     vector<Song> collection; 
@@ -89,28 +92,41 @@ public:
         collection.erase(it, collection.end());
     }
 
-    void addToFavorites(const string& songName) {
+    int addToFavorites(const string& songName) {
+        loadFromFile();
         for (const auto& song : collection) {
-            if (song.getSongName() == songName) {
+            if (song.getSongName() == songName){
                 if (find_if(favorites.begin(), favorites.end(),
                             [&songName](const Song& fav) { return fav.getSongName() == songName; }) == favorites.end()) {
                     favorites.push_back(song);
+                    saveToFile();
+                    return 1;
                 } else {
                     cout << "Song '" << songName << "' is already in favorites." << endl;
+                    return 2;
                 }
-                return;
             }
+            return 3;   
         }
         cout << "Song '" << songName << "' not found in the collection." << endl;
+        return 4;
+    }
+    int removeFromFavorites(const string& songName) {
+        loadFromFile(); // Ensure the favorites list is up-to-date
+        auto it = find_if(favorites.begin(), favorites.end(),
+                        [&songName](const Song& song) { return song.getSongName() == songName; });
+
+        if (it != favorites.end()) {
+            favorites.erase(it);
+            saveToFile();
+            return 1;
+        } else {
+            return 2;
+        }
+        return 3;
     }
 
-    void viewFavorites() const {
-        cout << "Favorite Songs:\n";
-        for (const auto& song : favorites) {
-            song.printDetails();
-            cout << "-------------------------\n";
-        }
-    }
+    
 
     void saveToFile() const {
         ofstream outFile("collection.txt");
@@ -158,9 +174,22 @@ public:
         inFile.close();
     }
 
+    bool isFavorites(const string &name) const {
+        for (const auto& song : favorites) {
+            if (song.getSongName() == name) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     // Getter for the collection
     const vector<Song>& getCollection() const {
         return collection;
+    }
+
+    const vector<Song>& getFavorites() const {
+        return favorites;
     }
 };
 

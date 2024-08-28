@@ -8,7 +8,7 @@
 
 int main()
 {
-    bool isLoggedIn = true;
+    bool isLoggedIn = false;
     if (isLoggedIn  == false)    
     {
         return registerUser();

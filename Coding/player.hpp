@@ -6,6 +6,7 @@
 #include "error.hpp"
 #include "popup.hpp"
 #include "slider.hpp"
+#include "listener.hpp"
 
 using namespace std;
 using namespace sf;
@@ -71,6 +72,8 @@ int player(string username, const string& songFilePath, const string& songImageP
 
 
     music.pause();
+    listener listener(username);
+    listener.loadFromFile();
 
     Font font;
     if (!font.loadFromFile("Poppins-Medium.ttf"))
@@ -163,6 +166,16 @@ int player(string username, const string& songFilePath, const string& songImageP
 
     bool isPlaying = false;
     bool shuffleOn = false;
+
+    bool isFavourite;
+    if (listener.isFavorites(songName))
+    {
+        isFavourite = true;
+    }
+    else 
+    {
+        isFavourite = false;
+    }
 
     PlayMode currentMode = PlayMode::RepeatOff;
 
@@ -287,6 +300,40 @@ int player(string username, const string& songFilePath, const string& songImageP
                         currentMode = PlayMode::RepeatOn;
                     }
                 }
+                if (heartFillSprite.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y)){
+                    if (isFavourite == true)
+                    {
+                        if (listener.removeFromFavorites(songName) == 1)
+                        {
+                            isFavourite = false;
+                        }
+                        else if (listener.removeFromFavorites(songName) == 2)
+                        {
+                            showPopup(window, "Song Not Found", Vector2f(400, 60));
+                        }
+                        else
+                        {
+                            showPopup(window, "Error Removing Song", Vector2f(400, 60));
+                        }
+                    }
+                }
+                if (heartStrokeSprite.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y)){     
+                    if (isFavourite == false)
+                    {
+                        if (listener.addToFavorites(songName) == 1)
+                        {
+                            isFavourite = true;
+                        }
+                        else if (listener.addToFavorites(songName) == 2)
+                        {
+                            showPopup(window, "Already in Favourites", Vector2f(400, 60));
+                        }
+                        else
+                        {
+                            showPopup(window, "Song Not Found", Vector2f(400, 60));
+                        }
+                    }
+                }
             }
         }
 
@@ -348,7 +395,14 @@ int player(string username, const string& songFilePath, const string& songImageP
         else if (currentMode == PlayMode::Shuffle) {
             window.draw(shuffleSprite);
         }
-        window.draw(heartStrokeSprite);
+        if (isFavourite)
+        {
+            window.draw(heartFillSprite);
+        }
+        else
+        {
+            window.draw(heartStrokeSprite);
+        }
         playerSlider.draw(window);
         window.display();
     }

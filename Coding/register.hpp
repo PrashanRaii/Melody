@@ -206,7 +206,11 @@ int registerUser()
                         string message = "Welcome to Melody Tunes, " + username;
                         showPopup(window, message, Vector2f(500, 60), "Success");
                         window.close();
-                        return home(username);
+                        if (userType == "Listener")
+                            return home(username);
+                        else
+                            showPopup(window, "You are a Musician. Please login to continue.", Vector2f(500, 60), "Success");
+                            
                     }
                     else
                     {
